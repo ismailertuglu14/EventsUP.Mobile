@@ -1,8 +1,9 @@
 import { AxiosError } from "axios";
 import { TAKE } from "../../../../core/network/network_constants";
-import NetworkManager from "../../../../core/network/network_manager";
 import { toQUeryString } from "../../../../features/helpers/network_helper";
 import axiosInstance from "../../../../core/network/network_manager";
+import { PostModel } from "../models/post_model";
+import CacheManager from "../../../../core/cache/cache_manager";
 
 export const fetchFeed = async (page: number) => {
     try{
@@ -16,4 +17,16 @@ export const fetchFeed = async (page: number) => {
           }
           throw error;
     }
+};
+
+export const cacheFeed = async (posts: PostModel[]) => {
+  // cache to locale storage
+  const cache = CacheManager.getInstance();
+  await cache.set("feed", posts);
+};
+
+export const getCachedFeed = async () => {
+  const cache = CacheManager.getInstance();
+  await cache.load();
+  return await cache.get("feed");
 };
