@@ -19,6 +19,8 @@ const EmptyImagePlaceHolder = ({ gender, style }: { gender: GenderEnum, style?: 
     }
     return (
         <Image source={getImageByGender()} style={[style && style, {
+            height: 50,
+            width: 50
         }]}
             resizeMode="cover"
         />

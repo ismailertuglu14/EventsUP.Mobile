@@ -8,6 +8,7 @@ enum NavigationPath {
     DIRECT_MESSAGES = '/DirectMessages',
 
     UPCOMING_EVENTS = '/UpcomingEvents',
+    EVENT_DETAIL = '/EventDetail',
     POPULAR_COMMUNITIES = '/PopularCommunities',
 }
 export default NavigationPath;

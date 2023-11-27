@@ -14,7 +14,7 @@ type SearchLandingProps = {
     popularCommunities: { id: string, name: string, imageUrl: string }[],
 }
 const SearchLanding = ({ lastSearches, popularEvents, popularCommunities }: SearchLandingProps) => {
-    const navigation = useNavigation();
+    const navigation = useNavigation() as any;;
     const width = Dimensions.get('screen').width;
     const COMMUNITY_IMAGE_SIZE = responsive({ mobile: 30, tablet: 50 });
 
@@ -41,7 +41,9 @@ const SearchLanding = ({ lastSearches, popularEvents, popularCommunities }: Sear
                     <Text style={{ fontSize: 14, fontWeight: '500', color: 'black' }}>
                         Upcoming Events
                     </Text>
-                    <SeeAllButton path={NavigationPath.UPCOMING_EVENTS} navigation={navigation} />
+                    <TouchableOpacity onPress={() => navigation.navigate(NavigationPath.UPCOMING_EVENTS, { filter: "upcoming" })}>
+                        <Text style={{ fontSize: 12, color: 'blue', marginRight: width * 0.09 }}>See all</Text>
+                    </TouchableOpacity>
                 </UpcomingEventsHeader>
                 <FlatList
                     style={{ marginTop: 12 }}

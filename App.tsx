@@ -21,6 +21,7 @@ import ProfileScreen from './src/presentation/home/Profile/Profile';
 import DirectMessages from './src/presentation/home/DirectMessages/DirectMessages';
 import UpcomingEvents from './src/presentation/home/UpcomingEvents/UpcomingEvents';
 import PopularCommunities from './src/presentation/home/PopularCommunities/PopularCommunities';
+import EventDetail from './src/presentation/home/Event/EventDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +43,7 @@ function App(): JSX.Element {
           <Stack.Screen name={NavigationPath.DIRECT_MESSAGES} component={DirectMessages} options={{ headerShown: false }} />
 
           <Stack.Screen name={NavigationPath.UPCOMING_EVENTS} component={UpcomingEvents} options={{ headerShown: false }} />
+          <Stack.Screen name={NavigationPath.EVENT_DETAIL} component={EventDetail} options={{ headerShown: false }} />
           <Stack.Screen name={NavigationPath.POPULAR_COMMUNITIES} component={PopularCommunities} options={{ headerShown: false }} />
 
         </Stack.Navigator>

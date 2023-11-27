@@ -11,4 +11,5 @@ export const GIRL_ICON = require("../../../assets/icons/gender/girl_ic.png")
 export const DM_ICON = require("../../../assets/icons/dm_ic.png")
 export const WWW_ICON = require("../../../assets/icons/www_ic.png")
 export const LOCATION_ICON = require("../../../assets/icons/location_ic.png")
-export const TL_ICON = require("../../../assets/icons/currency/tl_ic.png")
+export const TL_ICON = require("../../../assets/icons/currency/tl_ic.png");
+export const BACK_ICON = require("../../../assets/icons/navigation/back_ic.png")

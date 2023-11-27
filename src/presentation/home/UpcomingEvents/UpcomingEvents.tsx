@@ -1,79 +1,87 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { Dimensions, FlatList, Image, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
+import { Dimensions, FlatList, Image, SafeAreaView, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
 
 import styled from 'styled-components/native'
 import BaseResponse from '../../../core/network/base_response'
 import { User } from '../../../features/models/user'
-import { NavigationProp, useNavigation } from '@react-navigation/native'
+import { NavigationProp, useNavigation, useRoute } from '@react-navigation/native'
 import { ScrollView } from 'react-native-virtualized-view'
 import { EventCardModel, mockEventCardModel } from './models/event_model'
 import MasonryList from '@react-native-seoul/masonry-list';
 import { FilterModel } from './models/filter_model'
 import EventCard from './components/EventCard'
 import { EXPLORE_ICON } from '../../../features/constants/image_constants'
+import axiosInstance from '../../../core/network/network_manager'
+import { FilterRow } from './components/Filters'
+import { toQUeryString } from '../../../features/helpers/network_helper'
 
 const UpcomingEvents = () => {
-    const [events, setEvents] = useState<EventCardModel[]>(mockEventCardModel);
+    const route = useRoute();
+    const { filter } = route.params as { filter: string };
+    const [events, setEvents] = useState<EventCardModel[] | undefined>();
     const [filters, setFilters] = useState<FilterModel[]>([]);
-
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     useEffect(() => {
         fetchFilters();
     }, [])
 
+    useEffect(() => {
+        fetchEvents();
+    }, [filters])
+
     const fetchFilters = () => {
         // api call
         const mockFilters: FilterModel[] = [
-            { id: '1', name: 'All', isActive: false },
-            { id: '2', name: 'Upcoming', isActive: true },
-            { id: '3', name: 'Latest', isActive: false },
+            { id: '1', displayName: "All", name: 'all', isActive: false },
+            { id: '2', displayName: "Upcoming", name: 'upcoming', isActive: false },
+            { id: '3', displayName: "Latest", name: 'latest', isActive: false },
         ]
+        mockFilters.forEach(f => {
+            if (f.name === filter) {
+                f.isActive = true;
+            }
+        })
         setFilters(mockFilters);
     }
 
+    const fetchEvents = async () => {
+        console.log("eventler fetch edildi.")
+        setIsLoading(true);
+        setEvents(mockEventCardModel)
+        // const response = await axiosInstance.get(`/event/suggestions?${toQUeryString({ filter })}`)
+        // if (response.status === 200) {
+        //     const events = response.data as BaseResponse<EventCardModel[]>;
+        //     setEvents(events.data);
+        // }
+        setIsLoading(false);
+    }
 
     return (
-        <ScrollView style={{ flex: 1, paddingHorizontal: 24, paddingTop: 24 }} scrollToOverflowEnabled={false} stickyHeaderIndices={[1]} nestedScrollEnabled={true} >
-            <Text style={{ fontSize: 36, color: 'black', fontWeight: '700', marginLeft: 10 }}>Events</Text>
-            <SearchBar />
-            <FilterRow filters={filters} setFilters={setFilters} />
-            <EventsList events={events} />
-        </ScrollView>
+        <SafeAreaView style={{ flex: 1, minHeight: '100%', }}>
+            <ScrollArea style={{ flex: 1, paddingHorizontal: 24, paddingTop: 24 }} scrollToOverflowEnabled={false} nestedScrollEnabled={true} >
+                <Text style={{ fontSize: 36, color: 'black', fontWeight: '700', marginLeft: 10 }}>Events</Text>
+                <SearchBar />
+                <FilterRow filters={filters} setFilters={setFilters} />
+                {isLoading ? <Text>Loading...</Text> /** TODO: Skeleton Loading implementation */ : <EventsList events={events} />}
+            </ScrollArea>
+        </SafeAreaView>
     );
 };
 
+const ScrollArea = styled.ScrollView`
+    flex: 1;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 24px;
+`;
 
-const FilterRow = ({ filters, setFilters }: { filters: FilterModel[], setFilters: React.Dispatch<React.SetStateAction<FilterModel[]>> }) => {
-    const onFilterPress = (id: string) => {
-        if (filters.some(filter => filter.id === id && filter.isActive)) {
-            return;
-        }
-        const updatedFilters = filters.map(filter => ({
-            ...filter,
-            isActive: filter.id === id
-        }));
-        setFilters(updatedFilters);
-    };
-    return <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 12 }}>
-        {
-            filters.map((filter, index) => <FilterButton key={index} filter={filter} onPress={onFilterPress} />)
-        }
-    </View>
-}
-
-const FilterButton = ({ filter, onPress }: { filter: FilterModel, onPress: (id: string) => void }) => {
-    return <OutlinedButton style={{ backgroundColor: filter.isActive ? 'darkblue' : 'transparent' }} onPress={() => onPress(filter.id)}>
-        <Text style={{ fontSize: 16, fontWeight: '500', color: filter.isActive ? 'white' : 'black' }}>
-            {filter.name}
-        </Text>
-    </OutlinedButton>
-}
-
-const EventsList = ({ events }: { events: EventCardModel[] }) => {
+const EventsList = ({ events }: { events: EventCardModel[] | undefined }) => {
     const navigation = useNavigation();
 
-    return <MasonryList style={{
+    return events && <FlatList
+        style={{
 
-    }}
+        }}
         data={events}
         numColumns={2}
         keyExtractor={(item, index): string => index.toString()}
@@ -83,7 +91,6 @@ const EventsList = ({ events }: { events: EventCardModel[] }) => {
         contentContainerStyle={{
             alignSelf: 'stretch',
         }}
-
         renderItem={({ item }) => <EventCard event={item} navigation={navigation} />}
     />
 }
@@ -106,13 +113,7 @@ const SearchBar = () => {
 }
 
 
-const OutlinedButton = styled.TouchableOpacity`
-    border: 1px solid gray;    
-    border-radius: 24px;
-    padding: 10px 24px;
-    margin: 4px 4px;
 
-`
 const ClearTextButton = styled.TouchableOpacity`
 position: absolute;
 right: 12px;

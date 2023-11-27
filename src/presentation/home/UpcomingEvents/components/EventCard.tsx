@@ -1,15 +1,16 @@
-import { Dimensions, TouchableOpacity, View, Text, Image } from "react-native";
+import { TouchableOpacity, View, Text, Image } from "react-native";
 import { EventCardModel } from "../models/event_model";
 import { LOCATION_ICON, TL_ICON, WWW_ICON } from "../../../../features/constants/image_constants";
 import { useMemo } from "react";
+import { stringShortener } from "../../../../features/helpers/string_helpers";
+import NavigationPath from "../../../../core/navigation/navigation_paths";
 
 const EventCard = ({ event, navigation }: { event: EventCardModel, navigation: any }) => {
-    const randomBool = useMemo(() => Math.random() < 0.5, []);
 
     const CARD_BORDER_RADIUS = 12;
 
     const navigateToEventDetails = (id: string) => {
-        navigation.navigate('EventDetails', { id })
+        navigation.navigate(NavigationPath.EVENT_DETAIL, { id })
     }
 
     return <TouchableOpacity
@@ -21,7 +22,7 @@ const EventCard = ({ event, navigation }: { event: EventCardModel, navigation: a
             resizeMode='cover'
             style={{
                 borderRadius: CARD_BORDER_RADIUS,
-                height: randomBool ? 200 : 280,
+                height: 280,
                 width: '100%',
             }} />
         <View style={{
@@ -45,8 +46,6 @@ const EventCard = ({ event, navigation }: { event: EventCardModel, navigation: a
                     totalParticipants={event.totalParticipants}
                 />
             </View>
-
-
         </View>
     </TouchableOpacity>
 }
@@ -63,7 +62,7 @@ const EventPlatform = ({ isOnline }: { isOnline: boolean }) => {
 }
 
 const EventAddress = ({ address }: { address: string }) => {
-    return <Text style={{ color: 'white', marginLeft: 4 }}>{address}</Text>
+    return <Text style={{ color: 'white', marginLeft: 4 }}>{stringShortener(address, 26)}</Text>
 }
 
 const JoinedMutualFriends = ({ mutualFriendImages }: { mutualFriendImages: string[] | undefined }) => {
