@@ -2,7 +2,10 @@ import { GenderEnum } from "../../models/gender_enum";
 import React from "react";
 import { Image, ImageStyle, StyleProp } from "react-native"
 import { GIRL_ICON, MAN_ICON } from "../../constants/image_constants";
-import { responsive } from "../../helpers/screen_helpers";
+
+/**
+ * This component is used to display a placeholder image when the user has not uploaded any image
+ */
 const EmptyImagePlaceHolder = ({ gender, style }: { gender: GenderEnum, style?: StyleProp<ImageStyle> }) => {
     const getImageByGender = () => {
         switch (gender) {
@@ -14,7 +17,6 @@ const EmptyImagePlaceHolder = ({ gender, style }: { gender: GenderEnum, style?: 
                 return MAN_ICON;
         }
     }
-
     return (
         <Image source={getImageByGender()} style={[style && style, {
         }]}
