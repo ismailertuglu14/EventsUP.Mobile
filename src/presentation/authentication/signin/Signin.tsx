@@ -24,8 +24,8 @@ export const Signin = ({ navigation }: any) => {
     const [isPasswordValid, setIsPasswordValid] = React.useState(false);
     const [userName, setUserName] = React.useState("");
     const [password, setPassword] = React.useState("");
+    
     const handleLogin = async () => {
-
         try {
             setIsLoading(true);
             setIsError(false);
