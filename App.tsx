@@ -19,6 +19,8 @@ import Settings from './src/presentation/home/Settings/Settings';
 import CommentsScreen from './src/presentation/home/PostComments/Comments';
 import ProfileScreen from './src/presentation/home/Profile/Profile';
 import DirectMessages from './src/presentation/home/DirectMessages/DirectMessages';
+import UpcomingEvents from './src/presentation/home/UpcomingEvents/UpcomingEvents';
+import PopularCommunities from './src/presentation/home/PopularCommunities/PopularCommunities';
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +40,9 @@ function App(): JSX.Element {
           <Stack.Screen name={NavigationPath.COMMENTS} component={CommentsScreen} options={{ headerShown: false }} />
           <Stack.Screen name={NavigationPath.PROFILE} component={ProfileScreen} options={{ headerShown: false }} />
           <Stack.Screen name={NavigationPath.DIRECT_MESSAGES} component={DirectMessages} options={{ headerShown: false }} />
+
+          <Stack.Screen name={NavigationPath.UPCOMING_EVENTS} component={UpcomingEvents} options={{ headerShown: false }} />
+          <Stack.Screen name={NavigationPath.POPULAR_COMMUNITIES} component={PopularCommunities} options={{ headerShown: false }} />
 
         </Stack.Navigator>
       </NavigationContainer>

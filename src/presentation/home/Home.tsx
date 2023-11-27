@@ -1,5 +1,4 @@
-import styled from "styled-components/native"
-import { Image, Text, View } from "react-native"
+import { Image } from "react-native"
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { EXPLORE_ICON, FEED_ICON, PROFILE_ICON } from "../../features/constants/image_constants";
@@ -7,8 +6,6 @@ import ProfileScreen from "./Profile/Profile";
 import { useAppSelector } from "../../features/redux/store";
 import SearchScreen from "./Search/Search";
 import Feed from "./Feed/Feed";
-import CommentsScreen from "./PostComments/Comments";
-
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 

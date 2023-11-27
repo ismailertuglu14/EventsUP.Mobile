@@ -54,16 +54,6 @@ export const Feed = () => {
         }
     }
 
-    const DirectMessagesIcon = styled.TouchableOpacity`
-    width: 32px;
-    height: 32px;
-    border-radius: 16px;
-    background-color: #f0f0f0;
-    align-items: center;
-    justify-content: center;
-    margin-left: 12px;
-`;
-
     return (
         <ScrollView
             refreshControl={
@@ -143,5 +133,15 @@ const PostsSection = styled.FlatList`
     margin-top: 12px;
     margin-bottom: 12px; 
 `
+
+const DirectMessagesIcon = styled.TouchableOpacity`
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    background-color: #f0f0f0;
+    align-items: center;
+    justify-content: center;
+    margin-left: 12px;
+`;
 
 export default Feed;

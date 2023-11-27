@@ -5,6 +5,8 @@ import styled from 'styled-components/native'
 import { EXPLORE_ICON } from '../../../../features/constants/image_constants'
 import { HorizontalDivider } from '../../../../features/shared/components/Divider'
 import { responsive } from '../../../../features/helpers/screen_helpers'
+import NavigationPath from '../../../../core/navigation/navigation_paths'
+import { useNavigation } from '@react-navigation/native'
 
 type SearchLandingProps = {
     lastSearches: string[],
@@ -12,6 +14,7 @@ type SearchLandingProps = {
     popularCommunities: { id: string, name: string, imageUrl: string }[],
 }
 const SearchLanding = ({ lastSearches, popularEvents, popularCommunities }: SearchLandingProps) => {
+    const navigation = useNavigation();
     const width = Dimensions.get('screen').width;
     const COMMUNITY_IMAGE_SIZE = responsive({ mobile: 30, tablet: 50 });
 
@@ -38,10 +41,7 @@ const SearchLanding = ({ lastSearches, popularEvents, popularCommunities }: Sear
                     <Text style={{ fontSize: 14, fontWeight: '500', color: 'black' }}>
                         Upcoming Events
                     </Text>
-                    <TouchableOpacity>
-                        <Text style={{ fontSize: 12, color: 'blue', marginRight: width * 0.09 }}>See all</Text>
-                    </TouchableOpacity>
-
+                    <SeeAllButton path={NavigationPath.UPCOMING_EVENTS} navigation={navigation} />
                 </UpcomingEventsHeader>
                 <FlatList
                     style={{ marginTop: 12 }}
@@ -61,15 +61,16 @@ const SearchLanding = ({ lastSearches, popularEvents, popularCommunities }: Sear
                 />
             </UpcomingEventsArea>
             <HorizontalDivider color='gray' width={width * 0.9} style={{ marginVertical: 12, alignSelf: 'flex-start' }} />
+
             <PopularCommunitiesArea >
+
                 <PopularCommunitiesHeader style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Text style={{ fontSize: 14, fontWeight: '500', color: 'black' }}>
                         Popular Communities
                     </Text>
-                    <TouchableOpacity>
-                        <Text style={{ fontSize: 12, color: 'blue', marginRight: width * 0.09 }}>See all</Text>
-                    </TouchableOpacity>
+                    <SeeAllButton path={NavigationPath.POPULAR_COMMUNITIES} navigation={navigation} />
                 </PopularCommunitiesHeader>
+
                 <FlatList
                     style={{ marginTop: 12 }}
                     data={popularCommunities}
@@ -86,6 +87,18 @@ const SearchLanding = ({ lastSearches, popularEvents, popularCommunities }: Sear
         </View>
     );
 }
+
+
+const SeeAllButton = ({ path, navigation }: { path: NavigationPath, navigation: any }) => {
+    const width = Dimensions.get('screen').width;
+
+    return (
+        <TouchableOpacity onPress={() => navigation.navigate(path)}>
+            <Text style={{ fontSize: 12, color: 'blue', marginRight: width * 0.09 }}>See all</Text>
+        </TouchableOpacity>
+    )
+}
+
 
 const LastSearchesContainer = styled.View`
     width: 100%;
