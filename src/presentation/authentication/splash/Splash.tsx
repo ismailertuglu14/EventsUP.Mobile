@@ -15,31 +15,39 @@ import { changeTheme } from "../../../features/redux/theme_slice";
 
 const SplashScreen = ({ navigation }: any) => {
     const dispatch = useDispatch();
+
+    const cache = CacheManager.getInstance();
+
     useEffect(() => {
-        getTheme();
-        setTimeout(() => {
-            checkIsSignedIn();
-        }, 2000);
-    }, []);
-    const getTheme = () => {
-        const cache = CacheManager.getInstance();
-        cache.get(CacheEnum.THEME).then((theme) => {
-            if (theme) {
-                dispatch(changeTheme(theme))
-            } else {
-                dispatch(changeTheme("light"))
-            }
-        })
-    }
-    const checkIsSignedIn = async () => {
-        await CacheManager.getInstance().load();
-        const token = await CacheManager.getInstance().get(CacheEnum.TOKEN);
-        if (token) {
-            await getUserAfterLogin();
-        } else {
-            navigation.replace(NavigationPath.SIGNIN);
+        const initializeCache = async () => {
+            await cache.load();
         }
-    }
+
+        const getTheme = () => {
+            cache.get(CacheEnum.THEME).then((theme) => {
+                dispatch(changeTheme(theme || "light"));
+            });
+        }
+
+        const checkIsSignedIn = async () => {
+            await CacheManager.getInstance().load();
+            const token = await CacheManager.getInstance().get(CacheEnum.TOKEN);
+
+            if (token) {
+                await getUserAfterLogin();
+            } else {
+                navigation.replace(NavigationPath.SIGNIN);
+            }
+        }
+
+        const fetchData = async () => {
+            await initializeCache();
+            getTheme();
+            await checkIsSignedIn();
+        }
+
+        fetchData();
+    }, []);
 
     const getUserAfterLogin = async () => {
         try {
