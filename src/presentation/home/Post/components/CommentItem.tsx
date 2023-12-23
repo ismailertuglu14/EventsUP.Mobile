@@ -1,6 +1,6 @@
 import styled from "styled-components/native"
-import { CommentModel } from "../model/comment_model";
 import { howManyTimesAgo } from "../../../../features/helpers/time_helpers";
+import { CommentModel } from "../models/comment_model";
 const CommentItem = ({ comment }: { comment: CommentModel }) => {
     return (
         <Container>
@@ -37,6 +37,7 @@ const MessageDate = styled.Text`
 const CommentMessage = styled.Text`
     font-size: 14px;
     font-weight: 400;
+    color: black;
 `
 
 export default CommentItem;

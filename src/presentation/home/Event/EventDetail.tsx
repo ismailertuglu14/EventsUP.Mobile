@@ -79,11 +79,16 @@ const EventDetail = () => {
                 )
             }
         </View>
+        {
+            /**
+             * TODO:Tab navigation will be implemented here
+             */
+        }
     </View>
 }
 
 const EventName = ({ name }: { name: string }) => {
-    return <Text style={{ color: 'black', fontSize: 24, fontWeight: 'bold', marginBottom: 16 }}>Lolcü Agalarla Toplantı</Text>
+    return <Text style={{ color: 'black', fontSize: 24, fontWeight: 'bold', marginBottom: 16 }}>{name}</Text>
 }
 const EventOrganizer = ({ organizer }: { organizer: User }) => {
     const navigation = useNavigation() as any;

@@ -17,7 +17,7 @@ export const mockStories: StoryModel[] = [
         isOpened: false
     },
     {
-        id: '2',
+        id: '21231',
         userId: '1',
         name: 'John Doe',
         profileImage: 'https://www.filmarasidergisi.com/wp-content/uploads/2021/02/luke-the-place-beyond-the-pines-19825-2880x1800-1-scaled.jpg',
@@ -25,60 +25,44 @@ export const mockStories: StoryModel[] = [
         isOpened: false
     },
     {
-        id: '3',
+        id: '123123',
         userId: '1',
         name: 'John Doe',
-        profileImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2LOKlXtepGc7FWe2hJhaTPze_Xok3boD8yLndWNyp-c1M1MM_OeTXJBFzYtlv_T8feUY&usqp=CAU',
+        profileImage: 'https://www.filmarasidergisi.com/wp-content/uploads/2021/02/luke-the-place-beyond-the-pines-19825-2880x1800-1-scaled.jpg',
         createdAt: '2021-01-01T00:00:00.000Z',
         isOpened: false
     },
     {
-        id: '4',
+        id: '2123',
         userId: '1',
         name: 'John Doe',
-        profileImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2LOKlXtepGc7FWe2hJhaTPze_Xok3boD8yLndWNyp-c1M1MM_OeTXJBFzYtlv_T8feUY&usqp=CAU',
+        profileImage: 'https://www.filmarasidergisi.com/wp-content/uploads/2021/02/luke-the-place-beyond-the-pines-19825-2880x1800-1-scaled.jpg',
         createdAt: '2021-01-01T00:00:00.000Z',
         isOpened: false
     },
     {
-        id: '5',
+        id: '21321323',
         userId: '1',
         name: 'John Doe',
-        profileImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2LOKlXtepGc7FWe2hJhaTPze_Xok3boD8yLndWNyp-c1M1MM_OeTXJBFzYtlv_T8feUY&usqp=CAU',
+        profileImage: 'https://www.filmarasidergisi.com/wp-content/uploads/2021/02/luke-the-place-beyond-the-pines-19825-2880x1800-1-scaled.jpg',
         createdAt: '2021-01-01T00:00:00.000Z',
         isOpened: false
     },
     {
-        id: '6',
+        id: '24',
         userId: '1',
         name: 'John Doe',
-        profileImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2LOKlXtepGc7FWe2hJhaTPze_Xok3boD8yLndWNyp-c1M1MM_OeTXJBFzYtlv_T8feUY&usqp=CAU',
+        profileImage: 'https://www.filmarasidergisi.com/wp-content/uploads/2021/02/luke-the-place-beyond-the-pines-19825-2880x1800-1-scaled.jpg',
         createdAt: '2021-01-01T00:00:00.000Z',
         isOpened: false
     },
     {
-        id: '7',
+        id: '12',
         userId: '1',
         name: 'John Doe',
-        profileImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2LOKlXtepGc7FWe2hJhaTPze_Xok3boD8yLndWNyp-c1M1MM_OeTXJBFzYtlv_T8feUY&usqp=CAU',
+        profileImage: 'https://www.filmarasidergisi.com/wp-content/uploads/2021/02/luke-the-place-beyond-the-pines-19825-2880x1800-1-scaled.jpg',
         createdAt: '2021-01-01T00:00:00.000Z',
-        isOpened: true
-    },
-    {
-        id: '8',
-        userId: '1',
-        name: 'John Doe',
-        profileImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2LOKlXtepGc7FWe2hJhaTPze_Xok3boD8yLndWNyp-c1M1MM_OeTXJBFzYtlv_T8feUY&usqp=CAU',
-        createdAt: '2021-01-01T00:00:00.000Z',
-        isOpened: true
-    },
-    {
-        id: '9',
-        userId: '1',
-        name: 'John Doe',
-        profileImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2LOKlXtepGc7FWe2hJhaTPze_Xok3boD8yLndWNyp-c1M1MM_OeTXJBFzYtlv_T8feUY&usqp=CAU',
-        createdAt: '2021-01-01T00:00:00.000Z',
-        isOpened: true
-    },
+        isOpened: false
+    }
 ]
 

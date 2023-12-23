@@ -6,7 +6,7 @@ enum NavigationPath {
     COMMENTS = '/Comments',
     PROFILE = '/Profile',
     DIRECT_MESSAGES = '/DirectMessages',
-
+    POST_DETAIL = '/PostDetail',
     UPCOMING_EVENTS = '/UpcomingEvents',
     EVENT_DETAIL = '/EventDetail',
     POPULAR_COMMUNITIES = '/PopularCommunities',

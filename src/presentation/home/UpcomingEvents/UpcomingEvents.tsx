@@ -14,6 +14,7 @@ import { EXPLORE_ICON } from '../../../features/constants/image_constants'
 import axiosInstance from '../../../core/network/network_manager'
 import { FilterRow } from './components/Filters'
 import { toQUeryString } from '../../../features/helpers/network_helper'
+import { responsive } from '../../../features/helpers/screen_helpers'
 
 const UpcomingEvents = () => {
     const route = useRoute();
@@ -58,7 +59,7 @@ const UpcomingEvents = () => {
 
     return (
         <SafeAreaView style={{ flex: 1, minHeight: '100%', }}>
-            <ScrollArea style={{ flex: 1, paddingHorizontal: 24, paddingTop: 24 }} scrollToOverflowEnabled={false} nestedScrollEnabled={true} >
+            <ScrollArea scrollToOverflowEnabled={false} nestedScrollEnabled={true} >
                 <Text style={{ fontSize: 36, color: 'black', fontWeight: '700', marginLeft: 10 }}>Events</Text>
                 <SearchBar />
                 <FilterRow filters={filters} setFilters={setFilters} />
@@ -70,8 +71,9 @@ const UpcomingEvents = () => {
 
 const ScrollArea = styled.ScrollView`
     flex: 1;
-    padding-left: 24px;
-    padding-right: 24px;
+
+    padding-left: ${responsive({ mobile: '12px', tablet: '24px' })};
+    padding-right: ${responsive({ mobile: '12px', tablet: '24px' })};
     padding-top: 24px;
 `;
 
@@ -80,7 +82,6 @@ const EventsList = ({ events }: { events: EventCardModel[] | undefined }) => {
 
     return events && <FlatList
         style={{
-
         }}
         data={events}
         numColumns={2}

@@ -5,7 +5,7 @@ import { Text } from "react-native";
 import { fetchFeed } from "./services/feed_service";
 import Story from "./components/Story";
 import { mockStories } from "./models/story_model";
-import PostCard from "./components/PostCard";
+import Post from "../Post/Post";
 import { PostModel } from "./models/post_model";
 import BaseResponse from "../../../core/network/base_response";
 import { ScrollView } from "react-native-virtualized-view";
@@ -14,8 +14,10 @@ import { useAppSelector } from "../../../features/redux/store";
 import { useNavigation, useNavigationState } from "@react-navigation/native";
 import { DM_ICON, MESSAGE_ICON } from "../../../features/constants/image_constants";
 import NavigationPath from "../../../core/navigation/navigation_paths";
+import { colors } from "react-native-swiper-flatlist/src/themes";
 
 export const Feed = () => {
+    const theme = useAppSelector((state) => state.theme.theme);
     const navigation: any = useNavigation();
     const user = useAppSelector((state) => state.currentUser.user);
     const [posts, setPosts] = useState<PostModel[]>([]);
@@ -64,7 +66,7 @@ export const Feed = () => {
             }
         >
             <Header>
-                <HeaderText>EventsUP</HeaderText>
+                <HeaderText bgColor={"red"}>EventsUP</HeaderText>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                     <CreateButton>
                         <Text style={{ fontSize: 24 }}>+</Text>
@@ -76,7 +78,7 @@ export const Feed = () => {
             </Header>
 
             <StoriesSection
-                style={{ marginHorizontal: 12 }}
+                style={{}}
                 showsHorizontalScrollIndicator={false}
                 horizontal
                 data={mockStories}
@@ -91,11 +93,10 @@ export const Feed = () => {
 
             {posts.length > 0 ? (
                 <PostsSection
-
                     showsVerticalScrollIndicator={false}
                     data={posts}
                     renderItem={({ item }) => (
-                        <PostCard key={item.id} post={item} setPosts={setPosts} navigation={navigation} />
+                        <Post key={item.id} post={item} setPosts={setPosts} navigation={navigation} />
                     )} />) : <Text>Empty array</Text>}
 
         </ScrollView>
@@ -122,7 +123,8 @@ const CreateButton = styled.TouchableOpacity`
 const HeaderText = styled.Text`
     font-size: 20px;
     font-weight: bold;
-    color: #000;
+    color: black
+
 `;
 const StoriesSection = styled.FlatList`
 `

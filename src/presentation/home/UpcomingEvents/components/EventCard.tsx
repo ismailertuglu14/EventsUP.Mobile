@@ -4,6 +4,7 @@ import { LOCATION_ICON, TL_ICON, WWW_ICON } from "../../../../features/constants
 import { useMemo } from "react";
 import { stringShortener } from "../../../../features/helpers/string_helpers";
 import NavigationPath from "../../../../core/navigation/navigation_paths";
+import { responsive } from "../../../../features/helpers/screen_helpers";
 
 const EventCard = ({ event, navigation }: { event: EventCardModel, navigation: any }) => {
 
@@ -74,7 +75,11 @@ const JoinedMutualFriends = ({ mutualFriendImages }: { mutualFriendImages: strin
 }
 
 const ParticipantsCount = ({ isParticipantLimit, currentParticipants, totalParticipants }: { isParticipantLimit: boolean, currentParticipants: number, totalParticipants: number }) => {
-    return isParticipantLimit && <Text style={{ color: 'white', fontWeight: '500' }}>{currentParticipants} / {totalParticipants}</Text>
+    return isParticipantLimit && responsive({
+        mobile: <></>,
+        tablet: <Text style={{ color: 'white', fontWeight: '500' }}>{currentParticipants} / {totalParticipants}</Text>
+
+    })
 }
 
 const IsPaid = ({ isPaid }: { isPaid: boolean }) => {

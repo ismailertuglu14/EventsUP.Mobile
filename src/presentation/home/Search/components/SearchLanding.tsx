@@ -29,7 +29,7 @@ const SearchLanding = ({ lastSearches, popularEvents, popularCommunities }: Sear
                     data={lastSearches}
                     renderItem={({ item, index }) => (
                         <TouchableOpacity key={index}>
-                            <Text style={{ marginTop: 4, marginLeft: 4 }}>{item}</Text>
+                            <Text style={{ marginTop: 4, marginLeft: 20, color: 'gray' }}>{item}</Text>
                         </TouchableOpacity>
                     )}
                 />

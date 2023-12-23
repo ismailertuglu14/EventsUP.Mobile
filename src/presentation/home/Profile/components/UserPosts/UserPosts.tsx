@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components/native';
 import { PostModel } from '../../../Feed/models/post_model';
-import PostCard from '../../../Feed/components/PostCard';
+import Post from '../../../Post/Post';
 import { useNavigation } from '@react-navigation/native';
 import { getUserPosts } from '../../service/profile_service';
 import BaseResponse from '../../../../../core/network/base_response';
@@ -23,7 +23,7 @@ const UserPosts = ({ id }: { id: string }) => {
         <Screen>
             {posts && <PostsList
                 data={posts}
-                renderItem={({ item }) => <PostCard key={item.id} navigation={navigation} post={item} setPosts={setPosts} />}
+                renderItem={({ item }) => <Post key={item.id} navigation={navigation} post={item} setPosts={setPosts} />}
                 keyExtractor={(item) => item.id.toString()}
             />}
         </Screen>

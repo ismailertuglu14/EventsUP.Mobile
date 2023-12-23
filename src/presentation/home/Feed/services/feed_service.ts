@@ -7,7 +7,8 @@ import CacheManager from "../../../../core/cache/cache_manager";
 
 export const fetchFeed = async (page: number) => {
     try{
-        const response = await axiosInstance.get(`/post/feed/${toQUeryString({skip:page, take: TAKE})}`);
+      console.log(toQUeryString({skip:page, take: TAKE})      )
+      const response = await axiosInstance.get(`/post/feed/${toQUeryString({skip:page, take: TAKE})}`);
          return response.data;
     }catch(error: AxiosError | any){
         if (error.response) {

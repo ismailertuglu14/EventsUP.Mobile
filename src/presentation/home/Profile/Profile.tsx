@@ -212,8 +212,6 @@ const ProfileScreen = () => {
 
     const openChangeProfilePhotoMenu = () => {
         console.log("asdsad")
-
-
     };
 
     const handleOpenFollowingsModal = () => {

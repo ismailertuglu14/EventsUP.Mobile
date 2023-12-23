@@ -9,7 +9,10 @@ import { searchByQueryText } from './service/search_service'
 import BaseResponse from '../../../core/network/base_response'
 import { User } from '../../../features/models/user'
 import { useNavigation } from '@react-navigation/native'
+import { useAppSelector } from '../../../features/redux/store'
+import { colors } from '../../../core/theme/theme_colors'
 const SearchScreen = () => {
+    const theme = useAppSelector((state) => state.theme.theme)
     const navigation: any = useNavigation()
     const [searchText, setSearchText] = useState('')
     const [submitedSearchText, setSubmitedSearchText] = useState('')
@@ -55,6 +58,8 @@ const SearchScreen = () => {
                 <SearchContainer>
                     <SearchInput
                         placeholder="Search for events, users, communities"
+                        placeholderTextColor={'gray'}
+                        style={{ color: 'black' }}
                         value={searchText}
                         onChangeText={(value) => setSearchText(value)}
                         onSubmitEditing={(value) => handleSearch(value.nativeEvent.text)}

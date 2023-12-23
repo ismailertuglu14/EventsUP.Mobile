@@ -10,16 +10,27 @@ import BaseResponse from "../../../core/network/base_response";
 import { CurrentUser } from "../../../features/models/current_user";
 import { setCurrentUser } from "../../../features/redux/user_slice";
 import axiosInstance from "../../../core/network/network_manager";
+import { changeTheme } from "../../../features/redux/theme_slice";
 
 
 const SplashScreen = ({ navigation }: any) => {
     const dispatch = useDispatch();
     useEffect(() => {
+        getTheme();
         setTimeout(() => {
             checkIsSignedIn();
         }, 2000);
     }, []);
-
+    const getTheme = () => {
+        const cache = CacheManager.getInstance();
+        cache.get(CacheEnum.THEME).then((theme) => {
+            if (theme) {
+                dispatch(changeTheme(theme))
+            } else {
+                dispatch(changeTheme("light"))
+            }
+        })
+    }
     const checkIsSignedIn = async () => {
         await CacheManager.getInstance().load();
         const token = await CacheManager.getInstance().get(CacheEnum.TOKEN);

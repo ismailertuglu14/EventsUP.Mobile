@@ -7,7 +7,7 @@ import { BASE_NETWORK_TIMEOUT } from './network_constants';
 
 
 
-const axiosInstance =  axios.create({
+const axiosInstance = axios.create({
             baseURL: 'http://10.0.2.2:3000/api',
             timeout: BASE_NETWORK_TIMEOUT
         });
